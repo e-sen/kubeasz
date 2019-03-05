@@ -1,0 +1,11 @@
+- name: 安装 nfs 服务
+  apt:
+    name:
+    - nfs-kernel-server
+    state: latest
+
+- name: 设置 nfs 目录
+  shell: "echo {{ nfs-export }} >> /etc/exports"
+
+- name: 重载 nfs 服务
+  shell: "systemctl reload nfs-server.service"
